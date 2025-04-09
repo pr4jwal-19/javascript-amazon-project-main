@@ -1,0 +1,5 @@
+Javascript Rules to follow:
+
+1. Save the Data (info)
+2. Generate some HTML
+3. Make it interactive
