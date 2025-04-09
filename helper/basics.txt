@@ -18,3 +18,19 @@ Html -> data attribute : just like other html attributes like class, title, etc
                        : we get back this data by using dataset attribute
                        : it returns a DOMStringMap
                        : to access inner values we use dot operator -> e.g. dataset.name
+
+Usually the flow would be -> 
+    <!-- Load the cart before running other scripts -->
+    <script src="/data/cart.js"></script>
+    <!-- Creates products -> Saves the data -->
+    <script src="/data/products.js"></script>
+    <!-- Loops through the products and creates the HTML -->
+    <!-- type='module'(like packages in java) attribute lets it access variables out of other files -->
+    <script type="module" src="/scripts/amazon.js"></script>
+
+But with the use of modules we just need to have one single script in our html
+    -> <script type="module" src="/scripts/amazon.js"></script>
+    -> it is called the entry point of the js code
+    -> since we have mentioned the module attribute, it can now import all the necessary variables from other js files
+    -> with the use of modules the order doesn't matter.
+    -> naming conflicts are avoided
