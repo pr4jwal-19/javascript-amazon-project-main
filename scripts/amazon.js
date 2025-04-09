@@ -3,6 +3,7 @@
 
 let productsHTML = '';
 
+// products -> is an array from the products.json file
 // Creating some HTML elements dynamically for each product
 products.forEach((product) => {
   productsHTML += `
@@ -52,11 +53,47 @@ products.forEach((product) => {
                     Added
                 </div>
 
-                <button class="add-to-cart-button button-primary">Add to Cart</button>
+                <button class="add-to-cart-button button-primary js-add-to-cart"
+                    data-product-id="${product.id}">
+                    Add to Cart
+                </button>
             </div>
     `;
    
 });
 
+// Selecting the products grid element and setting its inner HTML to the generated product cards
+// Populating the products grid with the generated HTML
 document.querySelector('.js-products-grid')
     .innerHTML = productsHTML;
+
+
+// Adding event listeners to the "Add to Cart" buttons
+document.querySelectorAll('.js-add-to-cart')
+    .forEach((btn) => {
+        btn.addEventListener('click', () => {
+            // We just accessed the data attribute of the button which gets the product name
+            // data-product-name is converted to camel case as productName
+            const prodId = btn.dataset.productId;
+
+            let matchingProduct;
+
+            cart.forEach((item) => {
+                // Check if the product is already in the cart
+                if (prodId === item.id){
+                    matchingProduct = item;
+                }
+            });
+
+            if (matchingProduct) {
+                // If the product is already in the cart, we just increase the quantity by 1
+                matchingProduct.quantity++;
+            }else{
+                cart.push({
+                    id: prodId,
+                    quantity: 1,
+                });
+            }
+            console.log(cart);
+        });
+    });

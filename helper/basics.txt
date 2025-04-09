@@ -11,3 +11,10 @@ In the Html file,
     <script src= 'another/file'> </script>;
 
     this above code snippet shows it.
+
+Html -> data attribute : just like other html attributes like class, title, etc
+                       : it should start with -> 'data' -> e.g. data-any-name
+                       : we use it to attach any information about the content to the element
+                       : we get back this data by using dataset attribute
+                       : it returns a DOMStringMap
+                       : to access inner values we use dot operator -> e.g. dataset.name
