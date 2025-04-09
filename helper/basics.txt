@@ -3,3 +3,11 @@ Javascript Rules to follow:
 1. Save the Data (info)
 2. Generate some HTML
 3. Make it interactive
+
+In the Html file,
+    the order of the js files imported matters.
+
+    <script src= 'first/file'>  </script>;
+    <script src= 'another/file'> </script>;
+
+    this above code snippet shows it.
