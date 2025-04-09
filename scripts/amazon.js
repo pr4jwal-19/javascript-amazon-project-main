@@ -1,5 +1,10 @@
+// .. operator is used to go up one directory level
+import { cart } from '../data/cart.js';
+
 // JSON data for products
 // This data is used to populate the product cards on the Amazon clone page
+
+// const cart = []; -> naming conflict with the cart.js file
 
 let productsHTML = '';
 
