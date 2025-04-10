@@ -1,5 +1,5 @@
 // We load this dynamically
-export const cart = [
+export let cart = [
     {
         id: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
         quantity: 2
@@ -30,4 +30,20 @@ export function addToCart(prodId) {
             quantity: 1,
         });
     }
+}
+
+export function removeFromCart(prodId) {
+    // Create a new array
+    const updatedCart = [];
+    // Loop through the cart and find the product to remove
+    cart.forEach((cartItem) => {
+
+        // If the product ID is not equal to the one to remove, add it to the new array
+        if (cartItem.id !== prodId) {
+            // Add each prod except the one to remove to the new array
+            updatedCart.push(cartItem);
+        }
+    }); 
+
+    cart = updatedCart;
 }
