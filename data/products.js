@@ -34,6 +34,29 @@ class Product {
   getPrice() {
     return `$${formatCurrency(this.priceCents)}`;
   }
+
+  getSizeChartLink() {
+    return '';
+  }
+}
+
+class Clothing extends Product{
+  sizeChartLink;
+
+  constructor(productDetails) {
+    super(productDetails); // to call the constructor of the parent class
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+
+  // Override the getSizeChartLink method to provide a custom implementation
+  getSizeChartLink() {
+    //super.getSizeChartLink(); -> calls the parent class method
+    return `
+      <a href="${this.sizeChartLink}" target="_blank">
+        Size Chart
+      </a>
+    `;
+  }
 }
 
 export const products = [
@@ -80,7 +103,7 @@ export const products = [
       "apparel",
       "mens"
     ],
-    type: "clothing",
+    type: "clothing",// discriminator property
     sizeChartLink: "images/clothing-size-chart.png"
   },
   {
@@ -696,6 +719,9 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+  if (productDetails.type === 'clothing') {
+    return new Clothing(productDetails);
+  }
   // take each product object and create a new instance of the Product class
   // and return it
   return new Product(productDetails);
