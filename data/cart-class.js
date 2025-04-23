@@ -3,17 +3,18 @@ class Cart{
     // We load this dynamically
     cartItems; // products in the cart
 
-    localStorageKey; // key to store the cart in local storage
+    // # -> it is declared as private
+    #localStorageKey; // key to store the cart in local storage
     
     constructor(localStorageKey) {
-        this.localStorageKey = localStorageKey; // Set the local storage key for the cart
-        this.loadCartFromLocalStorage();
+        this.#localStorageKey = localStorageKey; // Set the local storage key for the cart
+        this.#loadCartFromLocalStorage();
     }
 
-    loadCartFromLocalStorage() {
+    #loadCartFromLocalStorage() {
         // this -> reference to the cart object
-        this.cartItems = localStorage.getItem(this.localStorageKey)
-        ? JSON.parse(localStorage.getItem(this.localStorageKey))
+        this.cartItems = localStorage.getItem(this.#localStorageKey)
+        ? JSON.parse(localStorage.getItem(this.#localStorageKey))
         : [
             {
               id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -29,7 +30,7 @@ class Cart{
     }
 
     saveCartToLocalStorage() {
-        localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+        localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
     }
 
     addToCart(prodId) {
