@@ -71,3 +71,21 @@ Server Error (5xx):
     A general error on the server, indicating a problem in the server's code or configuration. 
     503 Service Unavailable:
     The server is temporarily unavailable, often due to overload or maintenance. 
+
+
+This is one thread ->
+new Promise((resolve) => {
+    loadProducts(() => [
+        resolve();
+    ])
+})
+
+This is another thread -> 
+loadProducts(() => {
+    renderOrderSummary();
+    renderPaymentSummary();
+})
+
+Both threads run asynchronously
+
+after resolve() -> there is next steps that will run synchronously 
