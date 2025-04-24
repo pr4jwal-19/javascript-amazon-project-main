@@ -36,11 +36,11 @@ class Product {
   }
 
   getSizeChartLink() {
-    return '';
+    return "";
   }
 }
 
-class Clothing extends Product{
+class Clothing extends Product {
   sizeChartLink;
 
   constructor(productDetails) {
@@ -61,24 +61,47 @@ class Clothing extends Product{
 
 export let products = [];
 
+export function loadProductsFetch() {
+  const promise = fetch("https://supersimplebackend.dev/products")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      products = data.map((productDetails) => {
+        if (productDetails.type === "clothing") {
+          return new Clothing(productDetails);
+        }
+        // take each product object and create a new instance of the Product class
+        // and return it
+        return new Product(productDetails);
+      }); // parse the JSON response from the server and convert it to an array of objects
+    });
+  return promise;
+}
+
+/*
+loadProductsFetch().then(() => {
+  console.log('Products loaded');
+})
+*/
+
 export function loadProducts(renderFunc) {
   const xhr = new XMLHttpRequest();
 
-  xhr.addEventListener('load', () => {
+  xhr.addEventListener("load", () => {
     products = JSON.parse(xhr.response).map((productDetails) => {
-      if (productDetails.type === 'clothing') {
+      if (productDetails.type === "clothing") {
         return new Clothing(productDetails);
       }
       // take each product object and create a new instance of the Product class
       // and return it
       return new Product(productDetails);
     }); // parse the JSON response from the server and convert it to an array of objects
-    
+
     renderFunc(); // renders the products grid
-  
   });
 
-  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.open("GET", "https://supersimplebackend.dev/products");
   xhr.send();
 }
 
