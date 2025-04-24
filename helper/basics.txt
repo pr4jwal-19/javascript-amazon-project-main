@@ -34,3 +34,40 @@ But with the use of modules we just need to have one single script in our html
     -> since we have mentioned the module attribute, it can now import all the necessary variables from other js files
     -> with the use of modules the order doesn't matter.
     -> naming conflicts are avoided
+
+this keyword ->
+    1. Inside a method, 'this' points to the outer object
+    2. Inside a function, this = undefined
+    3. But we can change it
+    4. Arrow functions, do not change the value of this
+
+Successful (2xx):
+    
+    200 OK: The request was successful, and the server returned the requested data. 
+    201 Created: The request resulted in the creation of a new resource, and the location of the resource is included in the response headers. 
+    204 No Content: The request was successful, but there's no content to return in the response body. This is common for DELETE requests. 
+
+Redirection (3xx):
+    
+    301 Moved Permanently:
+    The resource has been permanently moved to a new URL, and the new URL is included in the response headers. 
+    302 Found:
+    The resource has been temporarily moved, and the client should follow the link in the response to access it. 
+    304 Not Modified:
+    The client has cached data and the resource has not been modified since the last request. 
+
+Client Error (4xx):
+
+    400 Bad Request: The client's request was malformed or invalid. 
+    401 Unauthorized: The client is not authorized to access the requested resource. 
+    403 Forbidden: The client is authorized but does not have permission to access the resource. 
+    404 Not Found: The requested resource could not be found on the server. 
+    405 Method Not Allowed: The HTTP method used in the request is not allowed for the requested resource. 
+    429 Too Many Requests: The client has sent too many requests in a short period. 
+
+Server Error (5xx):
+
+    500 Internal Server Error:
+    A general error on the server, indicating a problem in the server's code or configuration. 
+    503 Service Unavailable:
+    The server is temporarily unavailable, often due to overload or maintenance. 
