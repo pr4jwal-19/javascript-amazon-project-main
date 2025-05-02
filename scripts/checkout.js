@@ -8,19 +8,29 @@ import { loadCart } from "../data/cart.js";
 // async returns a promise
 // async functions wraps the code into a Promise
 async function loadPage() {
-  console.log("Loading page...");
 
-  await loadProductsFetch(); // like -> loadProductsFetch().then(() => {})
-  const message = await new Promise((resolve) => {
-    loadCart(() => {
-      resolve("Cart loaded");
+  try {
+    console.log("Loading page...");
+
+    await loadProductsFetch(); // like -> loadProductsFetch().then(() => {})
+    const message = await new Promise((resolve, reject) => {
+        //throw new Error("Error loading cart"); // if there is an error loading the cart
+        loadCart(() => {
+        //reject("Error loading cart"); // if there is an error loading the cart
+        resolve("Cart loaded");
+      });
     });
-  });
 
-  console.log(message); // Cart loaded
+    console.log(message); // Cart loaded
+
+  } catch (error) {
+    console.error("Error loading page:", error);
+    return "500 Internal Server Error";
+  }
+
   renderOrderSummary();
   renderPaymentSummary();
-  
+
   return "200 OK";
 }
 loadPage().then((value) => {

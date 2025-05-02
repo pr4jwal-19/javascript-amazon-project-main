@@ -75,7 +75,11 @@ export function loadProductsFetch() {
         // and return it
         return new Product(productDetails);
       }); // parse the JSON response from the server and convert it to an array of objects
+    }).catch((error) => {
+      console.error("Error loading products");
+      console.error(error);
     });
+
   return promise;
 }
 
@@ -99,6 +103,10 @@ export function loadProducts(renderFunc) {
     }); // parse the JSON response from the server and convert it to an array of objects
 
     renderFunc(); // renders the products grid
+  });
+
+  xhr.addEventListener('error', () => {
+    console.error('Error loading products');
   });
 
   xhr.open("GET", "https://supersimplebackend.dev/products");
